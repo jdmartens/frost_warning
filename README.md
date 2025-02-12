@@ -3,7 +3,6 @@ Here’s a **README.md** for your AWS Lambda function that sends **SES email not
 ---
 
 ### **README.md**
-```markdown
 # Freezing Weather Alert AWS Lambda
 
 ## Overview
@@ -84,5 +83,4 @@ Buffer applied: 2°F.
 
 ## License
 This project is licensed under the MIT License.
-```
 
