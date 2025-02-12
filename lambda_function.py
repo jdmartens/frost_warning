@@ -14,7 +14,6 @@ LAT = os.getenv('LAT', "44.42085921856718")  # Default to central Wisconsin
 LON = os.getenv('LON', "-89.8140888229648")  # Default to central Wisconsin
 SES_SENDER_EMAIL = os.environ['SES_SENDER_EMAIL']
 SES_RECIPIENT_EMAIL = os.environ['SES_RECIPIENT_EMAIL']
-SNS_TOPIC_ARN = os.environ['SNS_TOPIC_ARN']
 BUFFER_TEMP = int(os.environ.get('BUFFER_TEMP', 0))  # Default buffer is 0°F if not set
 
 # OpenWeather API URL
@@ -62,14 +61,6 @@ def send_ses_email(alert_message):
         }
     )
 
-def send_sns_notification(alert_message):
-    """Publishes a notification to an SNS topic."""
-    sns_client.publish(
-        TopicArn=SNS_TOPIC_ARN,
-        Message=alert_message,
-        Subject="Frost/Freezing Weather Alert"
-    )
-
 def lambda_handler(event, context):
     """AWS Lambda entry point."""
     try:
@@ -82,7 +73,6 @@ def lambda_handler(event, context):
                 f"Buffer applied: {BUFFER_TEMP}°F."
             )
             send_ses_email(alert_message)
-            send_sns_notification(alert_message)
             
             return {"statusCode": 200, "body": json.dumps("Alert sent successfully.")}
         
