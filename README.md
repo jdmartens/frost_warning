@@ -1,8 +1,3 @@
-Here’s a **README.md** for your AWS Lambda function that sends **SES email notifications** when freezing weather is forecasted.  
-
----
-
-### **README.md**
 # Freezing Weather Alert AWS Lambda
 
 ## Overview
